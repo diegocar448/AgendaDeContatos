@@ -62,4 +62,15 @@ dependencies {
 
     // Jetpack Compose integration
     implementation(libs.androidx.navigation.compose.v284)
+
+
+    //lib room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+
+    // To use constraintlayout in compose
+    implementation(libs.androidx.constraintlayout.compose)
+
 }
