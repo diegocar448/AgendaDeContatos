@@ -139,6 +139,7 @@ fun SalvarContato(navController: NavController){
                     }else{
                         println("Ai sim!")
                     }
+                    navController.navigate("atualizarContato")
                 },
                 texto = "Salvar"
             )
