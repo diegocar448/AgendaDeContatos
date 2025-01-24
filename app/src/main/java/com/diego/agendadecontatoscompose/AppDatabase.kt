@@ -9,7 +9,7 @@ import com.diego.agendadecontatoscompose.dao.ContatoDao
 import com.diego.agendadecontatoscompose.model.Contato
 
 @Database(entities = [Contato::class], version = 1)
-abstract class AppDatabase: RoomDatabase {
+abstract class AppDatabase: RoomDatabase() {
 
     abstract fun contatoDao(): ContatoDao
 

@@ -67,6 +67,8 @@ dependencies {
     //lib room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
+    kapt("androidx.room:room-compiler:2.5.0")
+
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
 
