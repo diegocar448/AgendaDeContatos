@@ -1,6 +1,8 @@
 package com.diego.agendadecontatoscompose.itemlista
 
+import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,12 +22,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 import com.diego.agendadecontatoscompose.R
+import com.diego.agendadecontatoscompose.model.Contato
 import com.diego.agendadecontatoscompose.ui.theme.ShapeCardView
 import com.diego.agendadecontatoscompose.ui.theme.WHITE
 
 @Composable
-fun ContatoItem(){
+fun ContatoItem(
+    navController: NavController,
+    position: Int,
+    listaContatos: MutableList<Contato>,
+    context: Context
+){
+
+    val nome = listaContatos[position].nome
+    val sobrenome = listaContatos[position].sobrenome
+    val idade = listaContatos[position].idade
+    val celular = listaContatos[position].celular
 
     Card(
         colors = CardDefaults.cardColors(
@@ -34,15 +48,15 @@ fun ContatoItem(){
         ),
         shape = ShapeCardView.medium,
         modifier = Modifier.fillMaxWidth().padding(10.dp, 20.dp, 10.dp, 10.dp)
-
     ){
         ConstraintLayout(
             modifier = Modifier.padding(20.dp)
+
         ) {
             val (txtNome, txtSobreNome, txtIdade, txtCelular, btAtualizar, btDeletar) = createRefs()
 
             Text(
-                text = "Contato: Marcos Duarte Gomes",
+                text = "Contato: ${nome} ${sobrenome}",
                 fontSize = 18.sp,
                 color = Color.Black,
                 modifier = Modifier.constrainAs(txtNome){
@@ -51,7 +65,7 @@ fun ContatoItem(){
                 }
             )
             Text(
-                text = "Idade: 40",
+                text = "Idade: ${idade}",
                 fontSize = 18.sp,
                 color = Color.Black,
                 modifier = Modifier.constrainAs(txtIdade){
@@ -60,7 +74,7 @@ fun ContatoItem(){
                 }
             )
             Text(
-                text = "Número: 85198882488",
+                text = "Número: $celular",
                 fontSize = 18.sp,
                 color = Color.Black,
                 modifier = Modifier.constrainAs(txtCelular){
@@ -71,7 +85,7 @@ fun ContatoItem(){
 
             Button(
                 onClick = {
-
+                    navController.navigate("atualizarContato")
                 },
                 modifier = Modifier.constrainAs(btAtualizar){
                     start.linkTo(txtCelular.end, margin = 20.dp)
@@ -117,11 +131,4 @@ fun ContatoItem(){
             }
         }
     }
-
-}
-
-@Preview
-@Composable
-private fun ContatoItemPreview(){
-    ContatoItem()
 }
