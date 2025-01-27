@@ -40,6 +40,7 @@ fun ContatoItem(
     val sobrenome = listaContatos[position].sobrenome
     val idade = listaContatos[position].idade
     val celular = listaContatos[position].celular
+    val uid = listaContatos[position].uid
 
     Card(
         colors = CardDefaults.cardColors(
@@ -85,7 +86,7 @@ fun ContatoItem(
 
             Button(
                 onClick = {
-                    navController.navigate("atualizarContato")
+                    navController.navigate("atualizarContato/$uid")
                 },
                 modifier = Modifier.constrainAs(btAtualizar){
                     start.linkTo(txtCelular.end, margin = 20.dp)

@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.diego.agendadecontatoscompose.ui.theme.AgendaDeContatosComposeTheme
 import com.diego.agendadecontatoscompose.views.AtualizarContato
 import com.diego.agendadecontatoscompose.views.ListaContatos
@@ -30,8 +31,11 @@ class MainActivity : ComponentActivity() {
                     composable("salvarContato"){
                         SalvarContato(navController)
                     }
-                    composable("atualizarContato"){
-                        AtualizarContato(navController)
+                    composable(
+                        "atualizarContato/{uid}",
+                        arguments = listOf(navArgument("uid"){})
+                    ){
+                        AtualizarContato(navController, it.arguments?.getString("uid").toString())
                     }
                 }
 
