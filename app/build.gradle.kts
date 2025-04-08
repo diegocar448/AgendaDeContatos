@@ -38,6 +38,8 @@ android {
     buildFeatures {
         compose = true
     }
+    buildToolsVersion = "34.0.0"
+    ndkVersion = "26.1.10909125"
 }
 
 dependencies {
@@ -68,7 +70,7 @@ dependencies {
     //lib room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
-    kapt("androidx.room:room-compiler:2.5.0")
+    kapt("androidx.room:room-compiler:2.6.1")
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
