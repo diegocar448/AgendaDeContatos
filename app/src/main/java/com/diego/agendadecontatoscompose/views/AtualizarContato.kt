@@ -41,7 +41,7 @@ private lateinit var contatoDao: ContatoDao
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnesedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnesedMaterialScaffoldPaddingParameter", "CoroutineCreationDuringComposition")
 fun AtualizarContato(navController: NavController, uid: String){
 
     val context = LocalContext.current
@@ -58,6 +58,22 @@ fun AtualizarContato(navController: NavController, uid: String){
     }
     var celular by remember {
         mutableStateOf("")
+    }
+
+    // Carregar o contato assim que a tela for composta
+    scope.launch(Dispatchers.IO) {
+        val contatoDao = AppDatabase.getInstance(context).contatoDao()
+        val contato = contatoDao.getContatoById(uid.toInt())
+
+        contato?.let {
+            // Atualiza os estados com os dados do contato
+            nome = it.nome
+            sobreNome = it.sobrenome
+            idade = it.idade
+            celular = it.celular
+        }
+
+        println(contato)
     }
 
     Scaffold(

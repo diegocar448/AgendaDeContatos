@@ -23,4 +23,7 @@ interface ContatoDao {
     @Query("DELETE FROM tabela_contatos WHERE uid = :id ")
     fun deletar(id: Int)
 
+    @Query("SELECT * FROM tabela_contatos WHERE uid = :id")
+    suspend fun getContatoById(id: Int): Contato?
+
 }
